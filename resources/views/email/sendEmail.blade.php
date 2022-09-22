@@ -1,0 +1,3 @@
+hi, Mohd waseem
+
+{{ $mailContent }}
