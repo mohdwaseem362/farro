@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -34,10 +34,14 @@ Route::post('/sendMail','Mail\MailController@sendMail');
 
 /** dashboard routes */
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index');
 Route::get('/dash/UsersManagement', 'dashboard\UserManagementController@index');
 Route::post('/dash/users-list', 'dashboard\UserManagementController@getUsers');
 Route::get('/dash/buy-products', 'dashboard\UserManagementController@getProductList');
+
+/** products routes */
+Route::get('/get-product-detail','ProductsController@getProductDetail');
+Route::get('/get-product-list','ProductsController@getProductList');
 
 /** razor pay routes */
 Route::post('/pay', 'PaymentController@buyItem');
@@ -46,3 +50,10 @@ Route::get('/open-getway-page/{amount}/{order_id}', 'PaymentController@opengatew
 /** callback url for razorpay */
 Route::post('/callback', 'PaymentController@callback');
 
+
+/** web app routes */
+
+Route::get('/home','myapp\HomeController@index')->name('home');
+Route::get('/','myapp\HomeController@index')->name('home');
+Route::get('/web/product-detail/{id}','myapp\HomeController@openProductDetail');
+Route::post('/web/get-pro-data','myapp\HomeController@getProdetail');

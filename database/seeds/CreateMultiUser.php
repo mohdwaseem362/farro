@@ -16,6 +16,15 @@ class CreateMultiUser extends Seeder
     {
         $faker = Faker::create();
 
+        // create a custom admin 
+        $user = new  User();
+        $user->name = 'Mohd Waseem';
+        $user->email = 'mohdwaseem362@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = '$2y$10$lEHZja1Hci6ONymCgD0bqepgSs5Mc3LsJphDHFBe9QMMRBxjyZBc.'; //
+        $user->remember_token = Str::random(10);
+        $user->save();
+
         foreach (range(1, 200) as $list) {
 
             $user = new  User();

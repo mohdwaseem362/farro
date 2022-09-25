@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 
+var moment = require('moment');
+
 window.Vue = require('vue');
 
 import Vue from 'vue'
@@ -34,10 +36,14 @@ Vue.use(IconsPlugin)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 
-Vue.component("dashboard-menu-component", () => import("./components/dashboard/DashboardMenuComponent.vue" ));
-Vue.component("sidebar-menu-component", () => import("./components/dashboard/SidebarMenuComponent.vue" ));
-Vue.component("users-management-component", () => import("./components/dashboard/UsersManagementComponent.vue" ));
-Vue.component("product-list-component", () => import("./components/dashboard/ProductListComponent.vue" ));
+Vue.component("dashboard-menu-component", () => import("./components/dashboard/DashboardMenuComponent.vue"));
+Vue.component("sidebar-menu-component", () => import("./components/dashboard/SidebarMenuComponent.vue"));
+Vue.component("users-management-component", () => import("./components/dashboard/UsersManagementComponent.vue"));
+Vue.component("product-list-component", () => import("./components/dashboard/ProductListComponent.vue"));
+
+/** website component  */
+Vue.component("carousel-component", () => import("./components/website/CarouselComponent.vue"));
+Vue.component("product-detail-page-component", () => import("./components/website/ProductDetailPageComponent.vue"));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -47,4 +53,7 @@ Vue.component("product-list-component", () => import("./components/dashboard/Pro
 
 const app = new Vue({
     el: '#app',
+    data: {
+        moment: moment
+    }
 });

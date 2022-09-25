@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-md-2" style="background-color:blue">
+        <!-- <div class="col-md-2" style="background-color:blue">
             <div class="row">
                 <div class="col-10">
                     <h2>notification </h2>
@@ -25,7 +25,7 @@
                 
             </div>
 
-        </div>
+        </div> -->
     </div>
 
 </div>

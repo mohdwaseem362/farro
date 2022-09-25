@@ -16,15 +16,15 @@ class CreateProductSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 10) as $list) {
+        foreach (range(1, 200) as $list) {
 
             $user = new  Products();
             $user->name = $faker->word;
+            $user->user_id = $faker->numberBetween($min=1,$max=200);
             $user->description =  $faker->sentence;
             $user->summary =  $faker->sentence;
-            $user->image =  $faker->imageUrl($width = 640, $height = 480);
+            $user->image = 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp';
             $user->price =  $faker->numberBetween($min = 1000, $max = 9000);
-          
             $user->save();
         }
     }
