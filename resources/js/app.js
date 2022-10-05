@@ -12,6 +12,13 @@ window.Vue = require('vue');
 
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import EventBus from './event-bus.js'
+
+// main.js
+import VueSimpleAlert from "vue-simple-alert";
+ 
+Vue.use(VueSimpleAlert);
+
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -44,6 +51,8 @@ Vue.component("product-list-component", () => import("./components/dashboard/Pro
 /** website component  */
 Vue.component("carousel-component", () => import("./components/website/CarouselComponent.vue"));
 Vue.component("product-detail-page-component", () => import("./components/website/ProductDetailPageComponent.vue"));
+Vue.component("website-menu-component", () => import("./components/website/WebsiteMenuComponent.vue"));
+Vue.component("cart-component", () => import("./components/website/CartComponent.vue"));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

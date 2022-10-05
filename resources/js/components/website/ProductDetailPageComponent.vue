@@ -15,7 +15,7 @@
                 <h2 class="mt-5">
                     {{item.price}}<small class="text-success">({{offerPercentage()}}%off)</small>
                 </h2>
-                <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
+                <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" @click="addToCart(item)" title=""
                     data-original-title="Add to cart">
                     <i class="fa fa-shopping-cart"></i>
                 </button>
@@ -149,7 +149,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex flex-start" style="width:100%" v-for="comment in item.comments">
-                                        
+
                                         <img class="rounded-circle shadow-1-strong me-3"
                                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp"
                                             alt="avatar" width="60" height="60" />
@@ -177,13 +177,13 @@
                                             </p>
                                             <hr class="my-3" />
                                         </div>
-                                        
-                                        
+
+
                                     </div>
-                                    
+
                                 </div>
 
-                                
+
 
                                 <!-- <div class="card-body p-4">
                                     <div class="d-flex flex-start">
@@ -256,6 +256,8 @@
 <script>
 import { get } from 'http';
 import moment from 'moment';
+import VueSimpleAlert from "vue-simple-alert";
+import EventBus from "../../event-bus";
 
 export default {
     data() {
@@ -265,13 +267,30 @@ export default {
         }
     },
     computed: {
-    //     formattedDate() {
-    //     return moment(this.givenDate).format('YYYY');
-    //   }
+        //     formattedDate() {
+        //     return moment(this.givenDate).format('YYYY');
+        //   }
     },
     methods: {
-        formattedDate($date){
+        formattedDate($date) {
             return moment(this.givenDate).format('LL');
+        },
+        addToCart: function ($data) {
+            var thisObject = this;
+            console.log($data);
+            axios.post('/web/addToCart', $data)
+                .then(function (res) {
+                    if (res.data.status == true) {
+                        // this.$eventBus.$emit("getCartCount");
+                        EventBus.$emit("getCartCount");
+                        // this.$alert("Hello Vue Simple Alert.");
+                    }
+
+
+                })
+                .catch(function (error) {
+                    alert(error);
+                })
         },
         pay: function ($data) {
 

@@ -19,6 +19,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     <!-- Styles bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    
     
 </head>
 <style>
@@ -47,11 +51,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <!-- <dashboard-menu-component></dashboard-menu-component> -->
+                    
 
                     <!-- Right Side Of Navbar -->
                 
                     <ul class="navbar-nav ml-auto">
+                    <website-menu-component></website-menu-component>
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">

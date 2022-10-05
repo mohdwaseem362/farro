@@ -6,6 +6,7 @@
 
 <div class="container">
     <div class="card">
+        
         <product-detail-page-component product-id={{$id}}></product-detail-page-component>
     </div>
 </div>

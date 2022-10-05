@@ -13,6 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var http__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(http__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
+/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../event-bus */ "./resources/js/event-bus.js");
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -29,6 +33,18 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     formattedDate: function formattedDate($date) {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.givenDate).format('LL');
+    },
+    addToCart: function addToCart($data) {
+      var thisObject = this;
+      console.log($data);
+      axios.post('/web/addToCart', $data).then(function (res) {
+        if (res.data.status == true) {
+          // this.$eventBus.$emit("getCartCount");
+          _event_bus__WEBPACK_IMPORTED_MODULE_3__["default"].$emit("getCartCount"); // this.$alert("Hello Vue Simple Alert.");
+        }
+      })["catch"](function (error) {
+        alert(error);
+      });
     },
     pay: function pay($data) {
       var thisObject = this;
@@ -114,7 +130,21 @@ var render = function render() {
     staticClass: "mt-5"
   }, [_vm._v("\n                " + _vm._s(_vm.item.price)), _c("small", {
     staticClass: "text-success"
-  }, [_vm._v("(" + _vm._s(_vm.offerPercentage()) + "%off)")])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("button", {
+  }, [_vm._v("(" + _vm._s(_vm.offerPercentage()) + "%off)")])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-dark btn-rounded mr-1",
+    attrs: {
+      "data-toggle": "tooltip",
+      title: "",
+      "data-original-title": "Add to cart"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.addToCart(_vm.item);
+      }
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-shopping-cart"
+  })]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary btn-rounded",
     on: {
       click: function click($event) {
@@ -123,7 +153,7 @@ var render = function render() {
     }
   }, [_vm._v("Buy Now")]), _vm._v(" "), _c("h3", {
     staticClass: "box-title mt-5"
-  }, [_vm._v("Key Highlights")]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("section", {
+  }, [_vm._v("Key Highlights")]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("section", {
     staticStyle: {
       "background-color": "#d3d0d0"
     }
@@ -141,7 +171,7 @@ var render = function render() {
     staticClass: "mb-0"
   }, [_vm._v("Recent comments")]), _vm._v(" "), _c("p", {
     staticClass: "fw-light mb-4 pb-2"
-  }, [_vm._v("Latest Comments section by users")]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("hr", {
+  }, [_vm._v("Latest Comments section by users")]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("hr", {
     staticClass: "my-4"
   }), _vm._v(" "), _vm._l(_vm.item.comments, function (comment) {
     return _c("div", {
@@ -165,7 +195,7 @@ var render = function render() {
       staticClass: "mb-0"
     }, [_vm._v("\n                                                " + _vm._s(_vm.formattedDate(comment.user.created_at)) + "\n                                                "), _vm._v(" "), _c("span", {
       staticClass: "badge bg-primary"
-    }, [_vm._v("Pending")])]), _vm._v(" "), _vm._m(4, true), _vm._v(" "), _vm._m(5, true), _vm._v(" "), _vm._m(6, true)]), _vm._v(" "), _c("p", {
+    }, [_vm._v("Pending")])]), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _vm._m(4, true), _vm._v(" "), _vm._m(5, true)]), _vm._v(" "), _c("p", {
       staticClass: "mb-0"
     }, [_vm._v("\n                                            Contrary to popular belief, Lorem Ipsum is not simply random text. It\n                                            has roots in a piece of classical Latin literature from 45 BC, making it\n                                            over 2000 years old. Richard McClintock, a Latin professor at\n                                            Hampden-Sydney College in Virginia, looked up one of the more obscure\n                                            Latin words, consectetur, from a Lorem Ipsum passage, and going through\n                                            the cites.\n                                            " + _vm._s(comment.Comment) + "\n                                        ")]), _vm._v(" "), _c("hr", {
       staticClass: "my-3"
@@ -174,20 +204,6 @@ var render = function render() {
 };
 
 var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("button", {
-    staticClass: "btn btn-dark btn-rounded mr-1",
-    attrs: {
-      "data-toggle": "tooltip",
-      title: "",
-      "data-original-title": "Add to cart"
-    }
-  }, [_c("i", {
-    staticClass: "fa fa-shopping-cart"
-  })]);
-}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
